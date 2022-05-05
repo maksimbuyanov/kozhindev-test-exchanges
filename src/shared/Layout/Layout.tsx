@@ -1,36 +1,23 @@
 import * as React from 'react';
-
-import {useBem} from '@steroidsjs/core/hooks';
+import {useBem, useComponents} from '@steroidsjs/core/hooks';
 import useLayout, {STATUS_OK, STATUS_LOADING} from '@steroidsjs/core/hooks/useLayout';
-
 import {Notifications} from '@steroidsjs/core/ui/layout';
-import Header from '@steroidsjs/core/ui/layout/Header';
-
 import './Layout.scss';
-import {ROUTE_ROOT} from '../../routes';
+import useFetch from '@steroidsjs/core/hooks/useFetch';
+import {useMemo} from 'react';
+import TopBar from '../TopBar';
+import rootReducer from '../../reducers/index';
 
 export default function Layout(props: React.PropsWithChildren<any>) {
     const bem = useBem('Layout');
-
-    //const components = useComponents();
-    const {status} = useLayout(/*() => components.http.post('/api/v1/init', {
-        timestamp: Date.now(),
-    })*/);
-
-    if (status !== STATUS_OK) {
-        return status !== STATUS_LOADING ? status : null;
-    }
+    const components = useComponents();
+    React.useEffect(() => {
+        components.store.addReducers(rootReducer);
+    }, [components.store]);
 
     return (
         <div className={bem.block()}>
-            <Header
-                logo={{
-                    title: 'Kozhindev-test-exchanges',
-                }}
-                nav={{
-                    items: ROUTE_ROOT,
-                }}
-            />
+            <TopBar />
             <div className={bem.element('content')}>
                 <Notifications />
                 {props.children}
