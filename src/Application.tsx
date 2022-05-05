@@ -3,10 +3,8 @@ import HttpComponent from '@steroidsjs/core/components/HttpComponent';
 import LocaleComponent from '@steroidsjs/core/components/LocaleComponent';
 import 'style/index.scss';
 import StoreComponent from '@steroidsjs/core/components/StoreComponent';
-import ApiComponent from '@steroidsjs/core/components/ApiComponent';
 
 export default function Application() {
-
     const {renderApplication} = useApplication({
         reducers: require('@steroidsjs/core/reducers').default,
         routes: () => require('routes').default,

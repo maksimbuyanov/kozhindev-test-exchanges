@@ -5,19 +5,20 @@ import {Notifications} from '@steroidsjs/core/ui/layout';
 import './Layout.scss';
 import useFetch from '@steroidsjs/core/hooks/useFetch';
 import {useMemo} from 'react';
-import TopBar from '../TopBar';
-import rootReducer from '../../reducers/index';
+import {getNewRate} from './api';
 
 export default function Layout(props: React.PropsWithChildren<any>) {
     const bem = useBem('Layout');
     const components = useComponents();
     React.useEffect(() => {
-        components.store.addReducers(rootReducer);
-    }, [components.store]);
+        getNewRate();
+        // components.store.addReducers(rootReducer);
+        // getNewRate();
+    }, []);
 
     return (
         <div className={bem.block()}>
-            <TopBar />
+            {/* <TopBar /> */}
             <div className={bem.element('content')}>
                 <Notifications />
                 {props.children}
