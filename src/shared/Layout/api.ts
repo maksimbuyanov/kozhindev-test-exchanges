@@ -2,63 +2,63 @@ import axios from 'axios';
 
 export const baseCurrency = [
     {
-        short: 'CNY',
-        full: 'Philippine Peso',
+        code: 'CNY',
+        name: 'Chinice',
     },
     {
-        short: 'RUB',
-        full: 'Philippine Peso',
+        code: 'RUB',
+        name: 'Philippine Peso',
     },
     {
-        short: 'EUR',
-        full: 'Philippine Peso',
+        code: 'EUR',
+        name: 'Philippine Peso',
     },
     {
-        short: 'USD',
-        full: 'Philippine Peso',
+        code: 'USD',
+        name: 'Philippine Peso',
     },
 ];
 
 export const selectedCurrency = [
     {
-        short: 'PHP',
-        full: 'Philippine Peso',
+        code: 'PHP',
+        name: 'Philippine Peso',
     },
     {
-        short: 'LVL',
-        full: 'Latvian Lats',
+        code: 'LVL',
+        name: 'Latvian Lats',
     },
     {
-        short: 'AMD',
-        full: 'Armenian Dram',
+        code: 'AMD',
+        name: 'Armenian Dram',
     },
     {
-        short: 'BOB',
-        full: 'Bolivian Boliviano',
+        code: 'BOB',
+        name: 'Bolivian Boliviano',
     },
     {
-        short: 'TRY',
-        full: 'Turkish Lira',
+        code: 'TRY',
+        name: 'Turkish Lira',
     },
     {
-        short: 'UAH',
-        full: 'Ukrainian Hryvnia',
+        code: 'UAH',
+        name: 'Ukrainian Hryvnia',
     },
     {
-        short: 'ZAR',
-        full: 'South African Rand',
+        code: 'ZAR',
+        name: 'South African Rand',
     },
     {
-        short: 'NIO',
-        full: 'Nicaraguan Córdoba',
+        code: 'NIO',
+        name: 'Nicaraguan Córdoba',
     },
     {
-        short: 'MUR',
-        full: 'Mauritian Rupee',
+        code: 'MUR',
+        name: 'Mauritian Rupee',
     },
     {
-        short: 'MAD',
-        full: 'Moroccan Dirham',
+        code: 'MAD',
+        name: 'Moroccan Dirham',
     },
 ];
 
@@ -72,13 +72,12 @@ const instance = axios.create({
 
 export const getNewRate = async ():Promise<any> => {
     const queryString = encodeURIComponent([...baseCurrency, ...selectedCurrency]
-        .map(item => item.short)
+        .map(item => item.code)
         .join(','));
     const result = await instance('latest', {
         params: { symbols: queryString, base: 'USD' },
     });
-    // eslint-disable-next-line no-console
-    console.log(result.data);
+    return result
 };
 
 // base: "USD"
