@@ -1,4 +1,13 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
+import {Irate} from '../reducers/initialize';
+
+export interface Iapi {
+  base: string;
+  date: string;
+  rates: Irate;
+  success: boolean;
+  timestamp: number; // в секундах, перед new Date умножить на 1000
+}
 
 export const baseCurrency = [
     {
@@ -66,37 +75,18 @@ const instance = axios.create({
     headers: {
         apikey: '9J1xVQm1w35Nb3B75s0gjB9VVdv15dRa',
     },
-    baseURL: 'https://api.apilayer.com/exchangerates_data/',
-
+    baseURL: 'https://api.apilayer.com/exchangerates_dat/',
 });
 
-export const getNewRate = async ():Promise<any> => {
+export const getNewRate = async () => {
     const queryString = encodeURIComponent([...baseCurrency, ...selectedCurrency]
         .map(item => item.code)
         .join(','));
     const result = await instance('latest', {
-        params: { symbols: queryString, base: 'USD' },
+        params: {
+            symbols: queryString,
+            base: 'USD',
+        },
     });
-    return result
+    return result.data;
 };
-
-// base: "USD"
-// date: "2022-05-05"
-// rates:
-// AMD: 464.490023
-// BOB: 6.874941
-// CNY: 6.655701
-// EUR: 0.95165
-// LVL: 0.60489
-// MAD: 10.012498
-// MUR: 42.996743
-// NIO: 35.770111
-// PHP: 52.549979
-// RUB: 64.325029
-// TRY: 14.865239
-// UAH: 29.442365
-// USD: 1
-// ZAR: 16.04801
-// [[Prototype]]: Object
-// success: true
-// timestamp: 1651766404 // в секундах, перед new Date умножить на 1000

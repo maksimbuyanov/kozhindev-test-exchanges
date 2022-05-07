@@ -2,3 +2,13 @@
 @import './fonts';
 @import './variables';
 @import '~@steroidsjs/bootstrap';
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+
+img.IconView {
+  height: $size;
+}
+
+.form-group {
+  margin-bottom: 0;
+}

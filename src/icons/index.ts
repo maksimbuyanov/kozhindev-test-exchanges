@@ -10,4 +10,6 @@ export default {
     back: require('@fortawesome/fontawesome-free/svgs/solid/arrow-left.svg'),
     securityEye: require('@fortawesome/fontawesome-free/svgs/solid/eye.svg'),
     securityEyeSlash: require('@fortawesome/fontawesome-free/svgs/solid/eye-slash.svg'),
+    'long-arrow-alt-down': require('./long-arrow-alt-down.svg'),
+    'long-arrow-alt-up': require('./long-arrow-alt-up.svg'),
 };
