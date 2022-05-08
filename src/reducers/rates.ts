@@ -60,24 +60,25 @@ export const setRowCount = (payload) => ({
 });
 /** возвращает цену валюты относительно базовой
  * const EUR = useSelector(getCurrencyRate('EUR')) **/
-const getCurrencyRate = (code: string) => (state: IRatesState) => //возможно вынести все коды в enum
-    state.rates.find(currency => currency.code === code).rate
-;
+export const getCurrencyRate = (code: string) => state => state.rates.rates?.find(currency => currency.code === code).rate;
+
 /** к валютам в массиве добавляет их курсы **/
-export const getRatesArray = (defaultArray: IDefaultCurrency[]) => (state: IRatesState) => defaultArray.map(currency => {
-    const findCurrencyIndex = state.rates.findIndex(item => item.code === currency.code);
-    if (findCurrencyIndex === -1) {
+export const getRatesArray = (defaultArray: IDefaultCurrency[]) => {
+    console.log(defaultArray);
+    return (state) => defaultArray.map(currency => {
+        const findCurrencyIndex = state.rates.rates.findIndex(item => item.code === currency.code);
+        if (findCurrencyIndex === -1) {
+            return ({
+                ...currency,
+                rate: 0,
+            });
+        }
         return ({
             ...currency,
-            rate: 0,
+            rate: state.rates.rates[findCurrencyIndex].rate,
         });
-    }
-
-    return ({
-        ...currency,
-        rate: state.rates[findCurrencyIndex].rate,
     });
-});
+};
 
 const presentArray: (ICurrencyRate & IDefaultCurrency)[] = [
     {
@@ -109,12 +110,5 @@ const createList = (array, eur, rub, usd, cny): Ilist => array.map((item) => {
         toCNY: rate / cny,
     };
 });
-
-const sortByCode = (array) => [...array].sort((a, b) => a.code.localeCompare(b.code));
-const sortByName = (array) => [...array].sort((a, b) => a.name.localeCompare(b.name));
-const sortByUSD = (array) => [...array].sort((a, b) => a.toUSD - b.toUSD);
-const sortByEUR = (array) => [...array].sort((a, b) => a.toEUR - b.toEUR);
-const sortByRUB = (array) => [...array].sort((a, b) => a.toRUB - b.toRUB);
-const sortByCNY = (array) => [...array].sort((a, b) => a.toCNY - b.toCNY);
 
 export default rates;

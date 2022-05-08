@@ -1,0 +1,21 @@
+@import 'style/variables';
+
+.CurrencyTable {
+  font-size: 14px;
+
+  &__header-cell {
+    text-align: center;
+    span {
+      display: inline-flex;
+    }
+  }
+
+  &__cell {
+    text-align: center;
+  }
+  &__toggle-button {
+    margin: 0 auto;
+    transform: translateY(-50%);
+  }
+}
+

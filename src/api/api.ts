@@ -12,19 +12,19 @@ export interface Iapi {
 export const baseCurrency = [
     {
         code: 'CNY',
-        name: 'Chinice',
+        name: 'Chinese Yuan',
     },
     {
         code: 'RUB',
-        name: 'Philippine Peso',
+        name: 'Russian Ruble',
     },
     {
         code: 'EUR',
-        name: 'Philippine Peso',
+        name: 'Europian Euro',
     },
     {
         code: 'USD',
-        name: 'Philippine Peso',
+        name: 'American Dollar',
     },
 ];
 
@@ -75,7 +75,7 @@ const instance = axios.create({
     headers: {
         apikey: '9J1xVQm1w35Nb3B75s0gjB9VVdv15dRa',
     },
-    baseURL: 'https://api.apilayer.com/exchangerates_dat/',
+    baseURL: 'https://api.apilayer.com/exchangerates_data/',
 });
 
 export const getNewRate = async () => {

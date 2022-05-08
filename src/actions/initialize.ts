@@ -1,7 +1,6 @@
 import {getNewRate} from '../api/api';
-import {setLastSync} from './topBar';
 import {setRates} from '../reducers/rates';
-import {IInitializeAction, SET_ERROR, SET_LOADING, START_APP} from '../reducers/initialize';
+import {IInitializeAction, SET_ERROR, SET_LAST_SYNC, SET_LOADING, START_APP} from '../reducers/initialize';
 
 export const setAppInitialized = (): IInitializeAction => ({
     type: START_APP,
@@ -12,6 +11,10 @@ export const setLoading = (payload: boolean): IInitializeAction => ({
 });
 export const setError = (payload: boolean): IInitializeAction => ({
     type: SET_ERROR,
+    payload,
+});
+export const setLastSync = (payload) => ({
+    type: SET_LAST_SYNC,
     payload,
 });
 
@@ -26,10 +29,10 @@ export const updateRates = () => async dispatch => {
     } else {
         dispatch(setError(true)); // выводить сообщение об ошибке и "попробуйте снова"
     }
-    dispatch(setLoading(true));
+    dispatch(setLoading(false));
 };
 
 export const startApp = () => async (dispatch) => {
     await dispatch(updateRates());
-    dispatch(startApp());
+    dispatch(setAppInitialized());
 };

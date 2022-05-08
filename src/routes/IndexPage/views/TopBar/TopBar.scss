@@ -1,0 +1,16 @@
+@import 'style/variables';
+
+.TopBar {
+  margin-top: $size;
+  display: flex;
+  justify-content: center;
+
+  &__last-sync {
+    padding: $size / 2;
+    margin-right: $size;
+  }
+
+  &__download-button {
+    padding: $size / 2;
+  }
+}

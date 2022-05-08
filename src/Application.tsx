@@ -7,7 +7,7 @@ import rootReducer from './reducers';
 
 export default function Application() {
     const {renderApplication} = useApplication({
-        reducers: require('@steroidsjs/core/reducers').default,
+        reducers: require('./reducers').default,
         routes: () => require('routes').default,
         layoutView: () => require('shared/Layout').default,
         screen: true,
@@ -16,8 +16,7 @@ export default function Application() {
             http: HttpComponent,
             store: StoreComponent,
         },
-        onInit: ({ui, store}) => {
-            store.addReducers(rootReducer);
+        onInit: ({ui}) => {
             ui.addViews(require('./ui/bootstrap').default);
             ui.addFields(require('@steroidsjs/core/ui/form').default);
             ui.addFormatters(require('@steroidsjs/core/ui/format').default);
