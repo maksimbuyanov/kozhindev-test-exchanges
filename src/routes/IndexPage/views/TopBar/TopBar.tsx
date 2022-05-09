@@ -1,13 +1,12 @@
 import React from 'react';
 import './TopBar.scss';
-import {useBem, useComponents, useSelector} from '@steroidsjs/core/hooks';
+import {useBem, useSelector} from '@steroidsjs/core/hooks';
 import {Button} from '@steroidsjs/core/ui/form';
 import useDispatch from '@steroidsjs/core/hooks/useDispatch';
 import {updateRates} from '../../../../actions/initialize';
 import {getLastSync} from '../../../../reducers/initialize';
 
 function TopBar(props) {
-    console.log('topbar rerender');
     const bem = useBem('TopBar');
     const dispatch = useDispatch();
 
@@ -20,7 +19,7 @@ function TopBar(props) {
     return (
         <div className={bem.block()}>
             <span className={bem.element('last-sync')}>
-                {lastSyncDate?.toISOString()}
+                {lastSyncDate}
             </span>
             <Button
                 className={bem.element('download-button')}

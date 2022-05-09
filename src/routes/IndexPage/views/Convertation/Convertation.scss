@@ -1,4 +1,24 @@
 @import 'style/variables';
 
 .Convertation {
+  display: flex;
+  flex-direction: column;
+
+  &__currency-values {
+    display: flex;
+    width: max-content;
+    margin-bottom: $size * 2;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__input {
+    margin-right: $size;
+  }
+
+  &__select {
+    min-width: 30%;
+  }
 }

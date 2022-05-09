@@ -1,15 +1,15 @@
 import {Irate} from './initialize';
 
 interface IDefaultCurrency {
-  code: string,
-  name: string
+  id: string,
+  label: string
 }
 
 export const SET_RATES = 'SET_RATES';
 export const SET_ROW_COUNT = 'SET_ROW_COUNT';
 
 interface ICurrencyRate {
-  code: string,
+  id: string,
   rate: number
 }
 
@@ -31,7 +31,7 @@ const rates = (state: IRatesState = initialState, action): IRatesState => {
             Object.keys(data)
                 .forEach(currency => {
                     rates.push({
-                        code: currency,
+                        id: currency,
                         rate: data[currency],
                     });
                 });
@@ -60,35 +60,32 @@ export const setRowCount = (payload) => ({
 });
 /** возвращает цену валюты относительно базовой
  * const EUR = useSelector(getCurrencyRate('EUR')) **/
-export const getCurrencyRate = (code: string) => state => state.rates.rates?.find(currency => currency.code === code).rate;
+const getCurrencyRate = (code: string) => state => state.rates.rates?.find(currency => currency.code === code).rate;
 
 /** к валютам в массиве добавляет их курсы **/
-export const getRatesArray = (defaultArray: IDefaultCurrency[]) => {
-    console.log(defaultArray);
-    return (state) => defaultArray.map(currency => {
-        const findCurrencyIndex = state.rates.rates.findIndex(item => item.code === currency.code);
-        if (findCurrencyIndex === -1) {
-            return ({
-                ...currency,
-                rate: 0,
-            });
-        }
+export const getRatesArray = (defaultArray: IDefaultCurrency[]) => (state) => defaultArray.map(currency => {
+    const findCurrencyIndex = state.rates.rates.findIndex(item => item.id === currency.id);
+    if (findCurrencyIndex === -1) {
         return ({
             ...currency,
-            rate: state.rates.rates[findCurrencyIndex].rate,
+            rate: 0,
         });
+    }
+    return ({
+        ...currency,
+        rate: state.rates.rates[findCurrencyIndex].rate,
     });
-};
+});
 
 const presentArray: (ICurrencyRate & IDefaultCurrency)[] = [
     {
-        code: 'RUB',
-        name: 'Russian Ruble',
+        id: 'RUB',
+        label: 'Russian Ruble',
         rate: 65.55,
     },
 ];
 
-interface Ilist {
+export interface Ilist {
   code: string,
   name: string,
   toUSD: number,
@@ -97,17 +94,17 @@ interface Ilist {
   toCNY: number,
 }
 
-const createList = (array, eur, rub, usd, cny): Ilist => array.map((item) => {
+export const createList = (array, usd, eur, rub, cny): Ilist[] => array.map((item) => {
     const {
         rate,
         ...rest
     } = item;
     return {
         ...rest,
-        toUSD: rate / usd,
-        toEUR: rate / eur,
-        toRUB: rate / rub,
-        toCNY: rate / cny,
+        toUSD: (usd.rate / rate).toFixed(5),
+        toEUR: (eur.rate / rate).toFixed(5),
+        toRUB: (rub.rate / rate).toFixed(5),
+        toCNY: (cny.rate / rate).toFixed(5),
     };
 });
 

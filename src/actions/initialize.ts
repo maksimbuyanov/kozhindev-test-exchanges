@@ -21,14 +21,21 @@ export const setLastSync = (payload) => ({
 export const updateRates = () => async dispatch => {
     dispatch(setError(false));
     dispatch(setLoading(true));
-    const data = await getNewRate();
-    console.log(`updateRates ${data.timestamp}`);
-    if (data?.success) {
-        dispatch(setLastSync(new Date(data.timestamp * 1000)));
-        dispatch(setRates(data.rates));//установить в редюсер rates масств
-    } else {
-        dispatch(setError(true)); // выводить сообщение об ошибке и "попробуйте снова"
+    try {
+        const data = await getNewRate();
+        console.log(`updateRates ${data.timestamp}`);
+        // debugger;
+        if (data?.success) {
+            dispatch(setLastSync(new Date(data.timestamp * 1000)));
+            dispatch(setRates(data.rates));//установить в редюсер rates масств
+        } else {
+            dispatch(setError(true)); // выводить сообщение об ошибке и "попробуйте снова"
+        }
+    } catch {
+        dispatch(setLastSync(new Date()));
+        dispatch(setError(true));
     }
+
     dispatch(setLoading(false));
 };
 

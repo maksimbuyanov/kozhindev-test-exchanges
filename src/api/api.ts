@@ -11,63 +11,63 @@ export interface Iapi {
 
 export const baseCurrency = [
     {
-        code: 'CNY',
-        name: 'Chinese Yuan',
+        id: 'USD',
+        label: 'American Dollar',
     },
     {
-        code: 'RUB',
-        name: 'Russian Ruble',
+        id: 'EUR',
+        label: 'Europian Euro',
     },
     {
-        code: 'EUR',
-        name: 'Europian Euro',
+        id: 'RUB',
+        label: 'Russian Ruble',
     },
     {
-        code: 'USD',
-        name: 'American Dollar',
+        id: 'CNY',
+        label: 'Chinese Yuan',
     },
 ];
 
 export const selectedCurrency = [
     {
-        code: 'PHP',
-        name: 'Philippine Peso',
+        id: 'PHP',
+        label: 'Philippine Peso',
     },
     {
-        code: 'LVL',
-        name: 'Latvian Lats',
+        id: 'LVL',
+        label: 'Latvian Lats',
     },
     {
-        code: 'AMD',
-        name: 'Armenian Dram',
+        id: 'AMD',
+        label: 'Armenian Dram',
     },
     {
-        code: 'BOB',
-        name: 'Bolivian Boliviano',
+        id: 'BOB',
+        label: 'Bolivian Boliviano',
     },
     {
-        code: 'TRY',
-        name: 'Turkish Lira',
+        id: 'TRY',
+        label: 'Turkish Lira',
     },
     {
-        code: 'UAH',
-        name: 'Ukrainian Hryvnia',
+        id: 'UAH',
+        label: 'Ukrainian Hryvnia',
     },
     {
-        code: 'ZAR',
-        name: 'South African Rand',
+        id: 'ZAR',
+        label: 'South African Rand',
     },
     {
-        code: 'NIO',
-        name: 'Nicaraguan Córdoba',
+        id: 'NIO',
+        label: 'Nicaraguan Córdoba',
     },
     {
-        code: 'MUR',
-        name: 'Mauritian Rupee',
+        id: 'MUR',
+        label: 'Mauritian Rupee',
     },
     {
-        code: 'MAD',
-        name: 'Moroccan Dirham',
+        id: 'MAD',
+        label: 'Moroccan Dirham',
     },
 ];
 
@@ -80,7 +80,7 @@ const instance = axios.create({
 
 export const getNewRate = async () => {
     const queryString = encodeURIComponent([...baseCurrency, ...selectedCurrency]
-        .map(item => item.code)
+        .map(item => item.id)
         .join(','));
     const result = await instance('latest', {
         params: {

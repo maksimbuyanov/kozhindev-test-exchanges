@@ -66,7 +66,4 @@ export default initialize;
 
 export const getInitialized = state => state.initialize.isInitialized;
 export const getLoading = state => state.initialize.isLoading;
-export const getLastSync = state => {
-    console.log(`getLastSync ${state.topBar?.lastSync}`);
-    return state.topBar?.lastSync;
-};
+export const getLastSync = state => state.initialize.lastSync?.toLocaleString();
