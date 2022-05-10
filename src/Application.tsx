@@ -3,6 +3,7 @@ import HttpComponent from '@steroidsjs/core/components/HttpComponent';
 import LocaleComponent from '@steroidsjs/core/components/LocaleComponent';
 import 'style/index.scss';
 import StoreComponent from '@steroidsjs/core/components/StoreComponent';
+import ClientStorageComponent from '@steroidsjs/core/components/ClientStorageComponent';
 import rootReducer from './reducers';
 
 export default function Application() {
@@ -15,6 +16,7 @@ export default function Application() {
             locale: LocaleComponent,
             http: HttpComponent,
             store: StoreComponent,
+            clientStorage: ClientStorageComponent,
         },
         onInit: ({ui}) => {
             ui.addViews(require('./ui/bootstrap').default);

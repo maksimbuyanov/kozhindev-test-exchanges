@@ -79,14 +79,18 @@ const instance = axios.create({
 });
 
 export const getNewRate = async () => {
-    const queryString = encodeURIComponent([...baseCurrency, ...selectedCurrency]
-        .map(item => item.id)
-        .join(','));
-    const result = await instance('latest', {
-        params: {
-            symbols: queryString,
-            base: 'USD',
-        },
-    });
-    return result.data;
+    try {
+        const queryString = encodeURIComponent([...baseCurrency, ...selectedCurrency]
+            .map(item => item.id)
+            .join(','));
+        const result = await instance('latest', {
+            params: {
+                symbols: queryString,
+                base: 'USD',
+            },
+        });
+        return result.data;
+    } catch (e) {
+        throw new Error('ошибка в API');
+    }
 };

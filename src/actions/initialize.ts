@@ -24,7 +24,7 @@ export const updateRates = () => async dispatch => {
     try {
         const data = await getNewRate();
         console.log(`updateRates ${data.timestamp}`);
-        // debugger;
+        debugger;
         if (data?.success) {
             dispatch(setLastSync(new Date(data.timestamp * 1000)));
             dispatch(setRates(data.rates));//установить в редюсер rates масств
