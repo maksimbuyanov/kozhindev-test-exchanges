@@ -1,18 +1,25 @@
 import * as React from 'react';
-import {useBem} from '@steroidsjs/core/hooks';
-import {Loader, Notifications} from '@steroidsjs/core/ui/layout';
+import { useBem, useComponents } from '@steroidsjs/core/hooks';
+import { Loader, Notifications } from '@steroidsjs/core/ui/layout';
 import './Layout.scss';
 import useDispatch from '@steroidsjs/core/hooks/useDispatch';
-import {startApp} from '../../actions/initialize';
+import AutoSaveHelper from '@steroidsjs/core/ui/form/Form/AutoSaveHelper';
+import { startApp } from '../../actions/initialize';
+import { setForm1, setForm2} from '../../reducers/rates';
 
 export default function Layout(props: React.PropsWithChildren<any>) {
     const bem = useBem('Layout');
-
+    const { clientStorage } = useComponents();
     const dispatch = useDispatch();
+
     // @ts-ignore
     React.useEffect(() => {
-        dispatch(startApp());
-    }, [dispatch]);
+        dispatch([
+            setForm1(AutoSaveHelper.restore(clientStorage, 'form1', {})),
+            setForm2(AutoSaveHelper.restore(clientStorage, 'form2', {})),
+            startApp(),
+        ]);
+    }, [clientStorage, dispatch]);
     return (
 
         <div className={bem.block()}>

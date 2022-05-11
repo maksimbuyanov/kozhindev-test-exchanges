@@ -75,7 +75,7 @@ const instance = axios.create({
     headers: {
         apikey: '9J1xVQm1w35Nb3B75s0gjB9VVdv15dRa',
     },
-    baseURL: 'https://api.apilayer.com/exchangerates_data/',
+    baseURL: 'https://api.apilayer.com/exchangerates_date/',
 });
 
 export const getNewRate = async () => {

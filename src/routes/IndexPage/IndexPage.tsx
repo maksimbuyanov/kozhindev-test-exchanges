@@ -19,8 +19,8 @@ export default function IndexPage() {
             {loading && <Loader view={LoaderRing} />}
             {initialized && (
                 <>
-                    <TopBar />
-                    <CurrencyTable />
+                    {/* <TopBar />
+                    <CurrencyTable /> */}
                     <Convertation />
                 </>
             )}
