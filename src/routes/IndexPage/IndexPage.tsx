@@ -26,8 +26,9 @@ export default function IndexPage() {
             {initialized && (
                 <>
                     <TopBar />
-                    <CurrencyTable />
                     <Convertation />
+                    <CurrencyTable />
+
                 </>
             )}
         </div>
