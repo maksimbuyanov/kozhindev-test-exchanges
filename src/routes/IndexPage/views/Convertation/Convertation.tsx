@@ -16,8 +16,6 @@ export default function Convertation() {
     const dispatch = useDispatch();
     const bem = useBem('Convertation');
     const { clientStorage } = useComponents();
-    // debugger;
-    // const allCurrency = useSelector(getRatesArray([...baseCurrency, ...selectedCurrency]));
     const allCurrency = [...baseCurrency, ...selectedCurrency];
     const changeForm1 = React.useCallback((newValue: IFormState): void => {
         if (initiatorRef.current !== 1) return;

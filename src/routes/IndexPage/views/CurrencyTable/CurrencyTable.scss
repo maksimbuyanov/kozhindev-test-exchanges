@@ -15,7 +15,9 @@
   }
   &__toggle-button {
     margin: 0 auto;
-    transform: translateY(-50%);
+    &_transform {
+      transform: translateY(-100%);
+    }
   }
 }
 

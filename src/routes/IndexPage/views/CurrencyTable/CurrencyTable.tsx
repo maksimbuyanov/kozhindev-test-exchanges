@@ -98,7 +98,7 @@ export default function CurrencyTable() {
                 searchForm={searchForm}
             />
             <Button
-                className={bem.element('toggle-button')}
+                className={tableData.length === 5 ? `${bem.element('toggle-button')} ${bem.element('toggle-button', 'transform')}` : bem.element('toggle-button')}
                 onClick={toggleTableLength}
                 label={tableData.length === 5 ? 'Показать больше' : 'Свернуть'}
                 color='info'
