@@ -2,10 +2,10 @@
   "errors": [],
   "warnings": [],
   "assetsByChunkName": {
-    "common": "frontend/bundle-common.e066c3e019fea624334c.js",
+    "common": "frontend/bundle-common.bd2889285f9f5c171f96.js",
     "index": [
-      "frontend/bundle-index.e066c3e019fea624334c.css",
-      "frontend/bundle-index.e066c3e019fea624334c.js"
+      "frontend/bundle-index.bd2889285f9f5c171f96.css",
+      "frontend/bundle-index.bd2889285f9f5c171f96.js"
     ]
   },
   "assets": [
@@ -18,7 +18,7 @@
       "emitted": true
     },
     {
-      "name": "frontend/bundle-common.e066c3e019fea624334c.js",
+      "name": "frontend/bundle-common.bd2889285f9f5c171f96.js",
       "size": 1498,
       "chunks": [
         "common"
@@ -32,8 +32,8 @@
       "emitted": true
     },
     {
-      "name": "frontend/bundle-index.e066c3e019fea624334c.css",
-      "size": 270881,
+      "name": "frontend/bundle-index.bd2889285f9f5c171f96.css",
+      "size": 270901,
       "chunks": [
         "index"
       ],
@@ -46,8 +46,8 @@
       "emitted": true
     },
     {
-      "name": "frontend/bundle-index.e066c3e019fea624334c.js",
-      "size": 1202070,
+      "name": "frontend/bundle-index.bd2889285f9f5c171f96.js",
+      "size": 1202077,
       "chunks": [
         "index"
       ],
@@ -190,9 +190,9 @@
     "frontend/images/trash.16bcf1021aabb13e1f4677dc3e83cf22.svg",
     "frontend/images/long-arrow-alt-down.73d5d46664ec938b660efbd79b85db4a.svg",
     "frontend/images/long-arrow-alt-up.32ea0fceb3732dbfe0c6b1edb9617717.svg",
-    "frontend/bundle-common.e066c3e019fea624334c.js",
-    "frontend/bundle-index.e066c3e019fea624334c.css",
-    "frontend/bundle-index.e066c3e019fea624334c.js",
+    "frontend/bundle-common.bd2889285f9f5c171f96.js",
+    "frontend/bundle-index.bd2889285f9f5c171f96.css",
+    "frontend/bundle-index.bd2889285f9f5c171f96.js",
     "bundle-all.js",
     "frontend/index.html"
   ]
