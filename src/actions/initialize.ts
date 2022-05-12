@@ -1,20 +1,26 @@
 import {getNewRate} from '../api/api';
-import {setRates} from '../reducers/rates';
-import {IInitializeAction, SET_ERROR, SET_LAST_SYNC, SET_LOADING, START_APP} from '../reducers/initialize';
+import {setRates} from './rates';
+
+export enum InitializeActionEnum {
+    START_APP = 'START_APP',
+    SET_LOADING = 'SET_LOADING',
+    SET_ERROR = 'SET_ERROR',
+    SET_LAST_SYNC = 'SET_LAST_SYNC',
+}
 
 export const setAppInitialized = (): IInitializeAction => ({
-    type: START_APP,
+    type: InitializeActionEnum.START_APP,
 });
 export const setLoading = (payload: boolean): IInitializeAction => ({
-    type: SET_LOADING,
+    type: InitializeActionEnum.SET_LOADING,
     payload,
 });
 export const setError = (payload: boolean): IInitializeAction => ({
-    type: SET_ERROR,
+    type: InitializeActionEnum.SET_ERROR,
     payload,
 });
 export const setLastSync = (payload) => ({
-    type: SET_LAST_SYNC,
+    type: InitializeActionEnum.SET_LAST_SYNC,
     payload,
 });
 
@@ -41,3 +47,20 @@ export const startApp = () => async (dispatch) => {
     await dispatch(updateRates());
     dispatch(setAppInitialized());
 };
+
+interface IsetAppInitialized {
+    type:InitializeActionEnum.START_APP,
+}
+interface IsetLoading {
+    type:InitializeActionEnum.SET_LOADING,
+    payload:boolean
+}
+interface IsetError {
+    type:InitializeActionEnum.SET_ERROR,
+    payload:boolean
+}
+interface IsetLastSync {
+    type:InitializeActionEnum.SET_LAST_SYNC,
+    payload:Date
+}
+export type IInitializeAction = IsetAppInitialized | IsetError | IsetLoading | IsetLastSync

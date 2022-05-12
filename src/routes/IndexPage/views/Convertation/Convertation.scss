@@ -2,15 +2,14 @@
 
 .Convertation {
   display: flex;
-  flex-direction: column;
 
   &__form {
     display: flex;
     width: max-content;
-    margin-bottom: $size * 2;
+    margin-right: $size * 2;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-right: 0;
     }
   }
 

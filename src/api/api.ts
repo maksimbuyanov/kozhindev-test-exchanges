@@ -1,6 +1,11 @@
 import axios, {AxiosResponse} from 'axios';
 import {Irate} from '../reducers/initialize';
 
+export interface IDefaultCurrency {
+    id: string,
+    label: string
+}
+
 export interface Iapi {
   base: string;
   date: string;
@@ -26,7 +31,7 @@ export const baseCurrency = [
         id: 'CNY',
         label: 'Chinese Yuan',
     },
-];
+] as IDefaultCurrency[];
 
 export const selectedCurrency = [
     {
@@ -69,13 +74,13 @@ export const selectedCurrency = [
         id: 'MAD',
         label: 'Moroccan Dirham',
     },
-];
+] as IDefaultCurrency[];
 
 const instance = axios.create({
     headers: {
         apikey: '9J1xVQm1w35Nb3B75s0gjB9VVdv15dRa',
     },
-    baseURL: 'https://api.apilayer.com/exchangerates_date/',
+    baseURL: 'https://api.apilayer.com/exchangerates_data/',
 });
 
 export const getNewRate = async () => {

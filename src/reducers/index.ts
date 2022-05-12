@@ -5,6 +5,11 @@ import {
 import initialize from './initialize';
 import rates from './rates';
 
+const customReducers = combineReducers({
+    initialize,
+    rates,
+});
+
 export default asyncReducers => combineReducers({
     form,
     auth,
@@ -18,3 +23,5 @@ export default asyncReducers => combineReducers({
     ...asyncReducers,
     router: (state, action) => router(asyncReducers.router ? asyncReducers.router(state, action) : {}, action),
 });
+
+export type RootState = ReturnType<typeof customReducers>

@@ -1,7 +1,5 @@
-export const START_APP = 'START_APP';
-export const SET_LOADING = 'SET_LOADING';
-export const SET_ERROR = 'SET_ERROR';
-export const SET_LAST_SYNC = 'SET_LAST_SYNC';
+import {RootState} from './index';
+import {IInitializeAction, InitializeActionEnum} from '../actions/initialize';
 
 export interface IInitializeState {
   isInitialized: boolean,
@@ -27,11 +25,6 @@ export interface Irate {
   ZAR?: number;
 }
 
-export interface IInitializeAction {
-  type: string,
-  payload?: any,
-}
-
 export const initialState: IInitializeState = {
     isInitialized: false,
     isLoading: true,
@@ -41,21 +34,25 @@ export const initialState: IInitializeState = {
 
 export const initialize = (state = initialState, action: IInitializeAction): IInitializeState => {
     switch (action.type) {
-        case SET_LAST_SYNC:
+        case InitializeActionEnum.SET_LAST_SYNC:
             return {
                 ...state,
                 lastSync: action.payload,
             };
-
-        case START_APP:
+        case InitializeActionEnum.START_APP:
             return {
                 ...state,
                 isInitialized: true,
             };
-        case SET_LOADING:
+        case InitializeActionEnum.SET_LOADING:
             return {
                 ...state,
                 isLoading: action.payload,
+            };
+        case InitializeActionEnum.SET_ERROR:
+            return {
+                ...state,
+                errorStatus: action.payload,
             };
         default:
             return state;
@@ -64,6 +61,7 @@ export const initialize = (state = initialState, action: IInitializeAction): IIn
 
 export default initialize;
 
-export const getInitialized = state => state.initialize.isInitialized;
-export const getLoading = state => state.initialize.isLoading;
-export const getLastSync = state => state.initialize.lastSync?.toLocaleString();
+export const getInitialized = (state:RootState) => state.initialize.isInitialized;
+export const getLoading = (state:RootState) => state.initialize.isLoading;
+export const getLastSync = (state:RootState) => state.initialize.lastSync?.toLocaleString();
+export const getErrorStatus = (state:RootState) => state.initialize.errorStatus;

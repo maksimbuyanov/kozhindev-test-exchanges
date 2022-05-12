@@ -2,15 +2,14 @@ import React, {useMemo} from 'react';
 import './CurrencyTable.scss';
 import Grid from '@steroidsjs/core/ui/list/Grid';
 import {useBem, useSelector} from '@steroidsjs/core/hooks';
-import {Button, InputField} from '@steroidsjs/core/ui/form';
+import {Button} from '@steroidsjs/core/ui/form';
 import {IGridColumn} from '@steroidsjs/core/ui/list/Grid/Grid';
-import useDispatch from '@steroidsjs/core/hooks/useDispatch';
-import {createList, getRatesArray} from '../../../../reducers/rates';
 import {baseCurrency, selectedCurrency} from '../../../../api/api';
+import {createList} from '../../../../Utils/createList';
+import {getRatesArray} from '../../../../reducers/rates';
 
 const searchForm = {
     layout: 'table',
-
     fields: [
         {
             attribute: 'id',
@@ -24,7 +23,6 @@ const searchForm = {
         },
     ],
 };
-
 const columns:IGridColumn[] = [
     {
         label: 'Код валюты',
@@ -75,18 +73,16 @@ export default function CurrencyTable() {
     const currencyList = useSelector(getRatesArray(selectedCurrency));
     // eslint-disable-next-line arrow-body-style
     const currencyGrid = useMemo(() => {
-        return createList(currencyList, usd, euro, rub, cny); // формирует массив с валют с их курсами
+        return createList(currencyList, usd, euro, rub, cny);
     }, [cny, currencyList, euro, rub, usd]);
     const [tableData, setTableData] = React.useState(currencyGrid.filter((item, index) => index < 5));
     const bem = useBem('CurrencyTable');
-    // const dispatch = useDispatch();
     const toggleTableLength = React.useCallback(() => {
         if (tableData.length === 5) {
             setTableData(currencyGrid);
         } else {
             setTableData(currencyGrid.filter((item, index) => index < 5));
         }
-        // dispatch();
     }, [currencyGrid, tableData.length]);
 
     const itemWithIndex = React.useMemo(() => tableData.map((item, index) => ({...item, index})), [tableData]);
@@ -111,18 +107,3 @@ export default function CurrencyTable() {
         </div>
     );
 }
-
-const items = [
-    {code: 'qwe', name: 'zc', toUSD: 11, id: 1},
-    {code: 'rty', name: 'sd', toUSD: 44, id: 1},
-    {code: 'tyu', name: 'df', toUSD: 555, id: 1},
-    {code: 'yui', name: 'rt', toUSD: 222, id: 1},
-    {code: 'qwe', name: 'zc', toUSD: 11, id: 1},
-    {code: 'rty', name: 'sd', toUSD: 44, id: 1},
-    {code: 'tyu', name: 'df', toUSD: 555, id: 1},
-    {code: 'yui', name: 'rt', toUSD: 222, id: 1},
-    {code: 'rty', name: 'sd', toUSD: 44, id: 1},
-    {code: 'tyu', name: 'df', toUSD: 555, id: 1},
-    {code: 'yui', name: 'rt', toUSD: 222, id: 1},
-
-];
